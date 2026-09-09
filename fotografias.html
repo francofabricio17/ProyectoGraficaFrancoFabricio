@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Galería Histórica - Plaza del Minero</title>
+    <link href="https://fonts.googleapis.com/css2?family=Cinzel+Decorative:wght@700;900&family=Orbitron:wght@700;900&family=Montserrat:wght@400;700;900&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="fotografias.css">
+</head>
+<body>
+    <div id="webgl-container"></div>
+
+    <div class="fondo-galeria"></div>
+    <div class="luces-overlay"></div>
+
+    <nav class="sidebar-menu">
+        <a href="index.html">Inicio</a>
+        <a href="fotografias.html" class="active">Galería</a>
+    </nav>
+    <h1 class="header-title">Fotografías</h1>
+
+    <main class="escenario-3d">
+        <div class="carrusel-3d" id="carrusel">      
+            <div class="tarjeta-foto">
+                <img src="imagenes/frontal.jpg" alt="Vista Frontal">
+                <div class="info-foto"><p>Vista Frontal de la Plaza</p></div>
+            </div>
+
+            <div class="tarjeta-foto">
+                <img src="imagenes/lateral.jpg" alt="Vista Lateral">
+                <div class="info-foto"><p>Perspectiva Lateral</p></div>
+            </div>
+
+            <div class="tarjeta-foto">
+                <img src="imagenes/plaza.jpg" alt="Vista Nocturna">
+                <div class="info-foto"><p>Mística Vista Nocturna</p></div>
+            </div>
+            
+            <div class="tarjeta-foto">
+                <img src="imagenes/monumento.jpg" alt="Monumentos">
+                <div class="info-foto"><p>Monumentos Escultóricos</p></div>
+            </div>
+
+            <div class="tarjeta-foto">
+                <img src="imagenes/evento.jpg" alt="Eventos">
+                <div class="info-foto"><p>Eventos</p></div>
+            </div>
+
+            <div class="tarjeta-foto">
+                <img src="imagenes/historia.jpg" alt="Fotografía Antigua">
+                <div class="info-foto"><p>Fotografías de Época</p></div>
+            </div>
+        </div>
+    </main>
+
+    <div class="controles-galeria">
+        <button class="btn-control" id="prevBtn">⭠</button>
+        <button class="btn-control" id="nextBtn">⭢</button>
+    </div>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
+    <script src="fotografias.js"></script>
+</body>
+</html>

@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Monumento a las Palliris - Vista 3D</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Cinzel+Decorative:wght@700;900&family=Cinzel:wght@700;900&family=Montserrat:wght@400;700&display=swap" rel="stylesheet">    
+    <link rel="stylesheet" href="palliri.css">
+</head>
+<body>
+
+    <div id="loader-container">
+        <div class="loader-content">
+            <div class="loader-brand">POTOSÍ - LLALLAGUA - SIGLO XX</div>
+            <div class="loader-text">Cargando Monumento...</div>
+            <div class="progress-bar-container">
+                <div id="progress-bar"></div>
+            </div>
+            <div id="progress-text">0%</div>
+        </div>
+    </div>
+
+    <div class="main-titulo-izquierdo">
+        <h1 class="texto-region">Potosí - Llallagua - Siglo XX</h1>
+        <h2 class="texto-monumento">Monumento <span>a las Palliris</span></h2>
+        <div class="foto-contexto-container">
+            <img src="imagenes/MonumentoPalliri.jpg" alt="Fotografía histórica del monumento" class="foto-contexto">
+        </div>
+    </div>
+
+    <div id="info-sidebar">
+        <div class="sidebar-scrollable">
+            <section class="info-bloque">
+                <h2>Historia</h2>
+                <p>Estatua erigida en homenaje a la mujer palliri en la comunidad minera de Siglo XX. Esta obra busca visibilizar y reconocer el trabajo histórico y sacrificado de las mujeres mineras en los centros de explotación estañífera.</p>
+            </section>
+
+            <section class="info-bloque">
+                <h2>Significado</h2>
+                <p>Rinde homenaje a las palliris, mujeres que trabajan de manera artesanal seleccionando los minerales de los desmontes o escombros de las minas. Representa la resistencia, el esfuerzo y la lucha diaria de las mujeres dentro de la dura realidad minera boliviana, muchas veces relegada de los relatos oficiales.</p>
+            </section>
+
+            <section class="info-bloque fichatecnica">
+                <h2>Ficha Técnica</h2>
+                <p><strong>Material base:</strong> Cemento modelado</p>
+                <p><strong>Año de registro:</strong> 2021</p>
+                <p><strong>Ubicación:</strong> Comunidad minera Siglo XX, Llallagua</p>
+            </section>
+        </div>
+
+        <button class="action-button-back" onclick="window.location.href='modelo.html'">Volver al Modelo 3D</button>
+    </div>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/108/three.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/three@0.108.0/examples/js/loaders/GLTFLoader.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/three@0.108.0/examples/js/controls/OrbitControls.js"></script>
+    
+    <script src="palliri.js"></script>
+</body>
+</html>

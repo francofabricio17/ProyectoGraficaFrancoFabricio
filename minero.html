@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Monumento al Minero - Vista 3D</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Cinzel+Decorative:wght@700;900&family=Cinzel:wght@700;900&family=Montserrat:wght@400;700&display=swap" rel="stylesheet">    
+    <link rel="stylesheet" href="minero.css">
+</head>
+<body>
+
+    <div id="loader-container">
+        <div class="loader-content">
+            <div class="loader-brand">POTOSÍ - LLALLAGUA - SIGLO XX</div>
+            <div class="loader-text">Cargando Monumento...</div>
+            <div class="progress-bar-container">
+                <div id="progress-bar"></div>
+            </div>
+            <div id="progress-text">0%</div>
+        </div>
+    </div>
+
+    <div class="main-titulo-izquierdo">
+        <h1 class="texto-region">Potosí - Llallagua - Siglo XX</h1>
+        <h2 class="texto-monumento">Monumento <span>al Minero</span></h2>
+        <div class="foto-contexto-container">
+            <img src="imagenes/MonumentoMinero.jpeg" alt="Fotografía histórica del monumento" class="foto-contexto">
+        </div>
+    </div>
+
+    <div id="info-sidebar">
+        <div class="sidebar-scrollable">
+            <section class="info-bloque">
+                <h2>Historia</h2>
+                <p>Levantado en memoria del coraje y sacrificio de los trabajadores del subsuelo de las minas Catavi y Siglo XX. Este monumento rinde tributo a las familias mineras que sostuvieron la economía del país y lideraron las vanguardias sindicales e históricas de Bolivia.</p>
+            </section>
+
+            <section class="info-bloque">
+                <h2>Significado</h2>
+                <p>La figura representa la dignidad obrera, el esfuerzo físico imponente y el espíritu inquebrantable del minero boliviano que perfora la roca enfrentando la oscuridad para extraer la riqueza mineral.</p>
+            </section>
+
+            <section class="info-bloque fichatecnica">
+                <h2>Ficha Técnica</h2>
+                <p><strong>Material base:</strong> Bronce y base de Piedra tallada</p>
+                <p><strong>Año de instalación:</strong> Siglo XX</p>
+                <p><strong>Ubicación:</strong> Plaza del Minero, Llallagua</p>
+            </section>
+        </div>
+
+        <button class="action-button-back" onclick="window.location.href='modelo.html'">Volver al Modelo 3D</button>
+    </div>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/108/three.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/three@0.108.0/examples/js/loaders/GLTFLoader.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/three@0.108.0/examples/js/controls/OrbitControls.js"></script>
+    
+    <script src="minero.js"></script>
+</body>
+</html>

@@ -1,0 +1,586 @@
+/* RESET Y CONFIGURACIÓN BASE */
+*, *::before, *::after {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+body {
+    margin: 0;
+    padding: 0;
+    overflow: hidden;
+    font-family: 'Montserrat', sans-serif;
+    background-color: #0d0F12; /* Tono negro carbón minero */
+}
+
+#ui-container {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    box-sizing: border-box;
+    pointer-events: none;
+    z-index: 600; /* Subido a 600 para que el título SIEMPRE esté sobre el overlay de historia */
+}
+
+.titulo-plaza {
+    position: absolute;
+    top: 40px;
+    left: 40px;
+    color: #e0dacf;
+    font-family: 'Cinzel', serif;
+    font-size: 1.4rem;
+    font-weight: 700;
+    letter-spacing: 4px;
+    text-transform: uppercase;
+    text-align: left;
+    user-select: none;
+    text-shadow: 0 4px 10px rgba(0, 0, 0, 0.9);
+    margin: 0;
+}
+
+.titulo-plaza span {
+    font-family: 'Cinzel Decorative', serif; 
+    color: #e0b066;
+    font-size: 2.8rem;
+    display: block;
+    margin-top: 10px;
+    letter-spacing: 6px;
+    text-shadow: 0 0 20px rgba(224, 176, 102, 0.4), 
+                 0 4px 12px rgba(0, 0, 0, 0.9);
+}
+
+/* --- CONTENEDOR DE BOTONES Y NUEVO BOTÓN --- */
+.botones-container {
+    position: absolute;
+    bottom: 30px;
+    right: 30px;
+    display: flex;
+    align-items: center;
+    gap: 15px;
+    pointer-events: auto;
+    z-index: 600;
+}
+
+.btn-fotografias {
+    background: rgba(18, 14, 12, 0.85);
+    color: #e0dacf;
+    font-family: 'Montserrat', sans-serif;
+    font-size: 0.85rem;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 2px;
+    padding: 16px 30px;
+    border-radius: 8px;
+    border: 1px solid rgba(224, 176, 102, 0.4);
+    cursor: pointer;
+    transition: all 0.3s ease;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.6);
+}
+
+.btn-fotografias:hover {
+    background: rgba(35, 25, 20, 0.95);
+    border-color: #e0b066;
+    color: #ffffff;
+    box-shadow: 0 0 15px rgba(224, 176, 102, 0.4);
+    transform: translateY(-2px);
+}
+
+.btn-fotografias:active {
+    transform: translateY(0);
+}
+
+.action-button {
+    display: inline-block;
+    background: linear-gradient(135deg, #7c5c4c 0%, #3a444d 100%);
+    color: #ffffff;
+    font-family: 'Montserrat', sans-serif;
+    font-weight: 700;
+    text-transform: uppercase;
+    font-size: 0.95rem;
+    letter-spacing: 2px;
+    padding: 18px 45px;
+    border-radius: 35px; 
+    box-shadow: 0 10px 30px rgba(124, 92, 76, 0.4);
+    border: none;
+    cursor: pointer;
+    pointer-events: auto;
+    transition: all 0.3s ease;
+    text-decoration: none;
+    width: fit-content;
+    text-align: center;
+}
+
+.action-button:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 15px 35px rgba(58, 68, 77, 0.6);
+    filter: brightness(1.1);
+}
+
+.action-button:active {
+    transform: translateY(-1px);
+    box-shadow: 0 5px 15px rgba(124, 92, 76, 0.5);
+}
+
+/* --- PANTALLA DE CARGA --- */
+#loader-container {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: #0d0F12;
+    z-index: 9999;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    transition: opacity 0.5s ease, visibility 0.5s ease;
+    pointer-events: auto;
+}
+
+#loader-container.loaded {
+    opacity: 0;
+    visibility: hidden;
+    pointer-events: none;
+}
+
+.loader-content {
+    text-align: center;
+    width: 90%;
+    max-width: 450px;
+}
+
+.loader-brand {
+    font-family: 'Cinzel', serif;
+    color: #e0dacf;
+    font-size: 1.1rem;
+    letter-spacing: 4px;
+    margin-bottom: 12px;
+}
+
+.loader-text {
+    font-family: 'Cinzel Decorative', serif;
+    color: #e0b066;
+    font-size: 2.2rem;
+    letter-spacing: 3px;
+    margin-bottom: 25px;
+}
+
+.progress-bar-container {
+    width: 100%;
+    height: 3px;
+    background-color: rgba(224, 218, 207, 0.08);
+    border-radius: 2px;
+    overflow: hidden;
+    margin-bottom: 12px;
+}
+
+#progress-bar {
+    width: 0%;
+    height: 100%;
+    background: linear-gradient(90deg, #e0b066, #3a444d);
+    transition: width 0.15s ease;
+}
+
+#progress-text {
+    font-family: 'Montserrat', sans-serif;
+    color: rgba(224, 218, 207, 0.4);
+    font-size: 0.85rem;
+    letter-spacing: 1px;
+}
+
+/* --- PANEL DE INSTRUCCIONES --- */
+.instrucciones-navegacion {
+    position: absolute;
+    bottom: 110px;
+    right: 30px;
+    z-index: 10;
+    background: rgba(13, 15, 18, 0.8);
+    backdrop-filter: blur(8px);
+    border: 1px solid rgba(224, 176, 102, 0.2);
+    border-radius: 16px;
+    padding: 20px 25px;
+    color: #e0dacf;
+    width: 290px;
+    box-shadow: 0 8px 32px rgba(0,0,0,0.7);
+    pointer-events: auto; 
+}
+
+.instrucciones-navegacion h3 {
+    font-family: 'Cinzel', serif;
+    font-size: 0.95rem;
+    text-transform: uppercase;
+    letter-spacing: 2px;
+    color: #e0b066;
+    margin-top: 0;
+    margin-bottom: 12px;
+    border-bottom: 1px solid rgba(224, 218, 207, 0.1);
+    padding-bottom: 8px;
+}
+
+.instrucciones-navegacion ul {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+}
+
+.instrucciones-navegacion li {
+    font-size: 0.8rem;
+    line-height: 1.8;
+    color: rgba(224, 218, 207, 0.85);
+    font-family: 'Montserrat', sans-serif;
+}
+
+.instrucciones-navegacion strong {
+    color: #7c5c4c;
+    display: inline-block;
+    width: 65px;
+}
+
+@media (max-width: 768px) {
+    .instrucciones-navegacion {
+        display: none; 
+    }
+}
+
+/* --- ETIQUETAS Y BOTONES 3D --- */
+#etiquetas-container {
+    position: absolute;
+    top: 0; left: 0;
+    width: 100%; height: 100%;
+    pointer-events: none;
+    z-index: 90;
+    overflow: hidden;
+}
+
+.etiqueta-3d {
+    position: absolute;
+    max-width: 160px; 
+    text-align: center;
+    font-family: 'Segoe UI', Roboto, Helvetica, sans-serif;
+    font-size: 11px;
+    font-weight: bold;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+    color: #ffd700; 
+    background: rgba(10, 25, 20, 0.85);
+    border: 1px solid rgba(255, 215, 0, 0.4);
+    padding: 6px 10px;
+    border-radius: 8px;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.4);
+    pointer-events: auto;
+    cursor: pointer;
+    transform: translate(-50%, -100%);
+    transition: background 0.2s, transform 0.2s;
+}
+
+.etiqueta-3d:hover {
+    background: rgba(20, 45, 35, 0.95);
+    transform: translate(-50%, -100%) scale(1.05);
+    color: #fff;
+}
+
+.etiqueta-3d::before {
+    content: '';
+    position: absolute;
+    bottom: -35px;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 2px;
+    height: 35px;
+    background-color: rgba(224, 176, 102, 0.7);
+    pointer-events: none;
+}
+
+.etiqueta-3d::after {
+    content: '';
+    position: absolute;
+    bottom: -43px;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 10px;
+    height: 10px;
+    background-color: #e0b066;
+    border: 2px solid #ffffff;
+    border-radius: 50%;
+    box-shadow: 0 0 10px rgba(224, 176, 102, 0.9);
+    pointer-events: none;
+}
+
+/* =========================================================
+   HISTORIA INTERACTIVA - PLAZA DEL MINERO
+========================================================= */
+
+#historia-overlay {
+    position: fixed;
+    inset: 0;
+    z-index: 500;
+    display: flex;
+    justify-content: flex-end;
+    align-items: center;
+    padding-right: 7vw;
+    background: rgba(0, 0, 0, 0.08);
+    pointer-events: none;
+    opacity: 0;
+    visibility: hidden;
+    transition: opacity 0.7s ease, visibility 0.7s ease;
+}
+
+#historia-overlay.activa {
+    opacity: 1;
+    visibility: visible;
+    pointer-events: auto;
+}
+
+/* =========================================================
+   PANEL DE HISTORIA
+========================================================= */
+
+#historia-panel {
+    position: absolute;
+    width: min(500px, 42vw);
+    max-height: 72vh; 
+    
+    /* Centramos el panel sobre su propio eje Y e iniciamos con opacidad 0 */
+    transform: translateY(-50%);
+    opacity: 0;
+    
+    /* Transición suave tanto horizontal (left) como vertical (top) */
+    transition:
+        left 0.8s cubic-bezier(.22, .8, .2, 1),
+        top 0.8s cubic-bezier(.22, .8, .2, 1),
+        opacity 0.7s ease,
+        transform 0.7s ease;
+}
+
+/* Cuando la historia está activa, se vuelve visible */
+#historia-overlay.activa #historia-panel {
+    opacity: 1;
+    transform: translateY(-50%);
+}
+
+/* DERECHA: Posición elevada (MÁS ARRIBA) */
+#historia-panel.historia-derecha {
+    left: calc(100% - min(500px, 42vw) - 7vw);
+    top: 36%;
+}
+
+/* IZQUIERDA: Posición baja (MANTIENE SU LUGAR PARA NO OCULTAR EL TÍTULO) */
+#historia-panel.historia-izquierda {
+    left: 7vw;
+    top: 58%;
+}
+
+/* =========================================================
+   INDICADOR, TITULO, IMAGEN Y TEXTO
+========================================================= */
+
+.historia-indicador {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    color: #e0b066;
+    font-family: 'Montserrat', sans-serif;
+    font-size: 10px;
+    font-weight: 700;
+    letter-spacing: 2px;
+    margin-bottom: 15px;
+}
+
+#historia-numero {
+    font-size: 14px;
+    color: #f1cf76;
+}
+
+.historia-linea {
+    width: 35px;
+    height: 1px;
+    background: rgba(224, 176, 102, 0.6);
+}
+
+#historia-titulo {
+    margin: 0 0 20px 0;
+    color: #e9cf70;
+    font-family: 'Cinzel Decorative', 'Cinzel', serif;
+    font-size: clamp(1.7rem, 3vw, 2.5rem);
+    line-height: 1.15;
+    text-shadow: 0 3px 15px rgba(0,0,0,.8);
+}
+
+.historia-imagen-contenedor {
+    width: 100%;
+    height: 220px;
+    overflow: hidden;
+    border-radius: 14px;
+    border: 1px solid rgba(224, 176, 102, 0.4);
+    margin-bottom: 20px;
+    background: #10171a;
+}
+
+#historia-imagen {
+    width: 100%;
+    height: 100%;
+    display: block;
+    object-fit: cover;
+    transition: opacity .5s ease, transform .8s ease;
+}
+
+#historia-imagen.cambiando {
+    opacity: 0;
+    transform: scale(1.04);
+}
+
+#historia-texto {
+    color: rgba(235, 231, 220, 0.9);
+    font-family: Georgia, 'Times New Roman', serif;
+    font-size: 16px;
+    line-height: 1.8;
+    text-align: justify;
+    margin: 0;
+    min-height: 150px;
+}
+
+/* =========================================================
+   FOOTER, PROGRESO Y BOTONES
+========================================================= */
+
+.historia-footer {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-end;
+    gap: 20px;
+    margin-top: 25px;
+}
+
+.historia-progreso {
+    flex: 1;
+}
+
+#historia-progreso-texto {
+    display: block;
+    color: rgba(224, 218, 207, .5);
+    font-family: 'Montserrat', sans-serif;
+    font-size: 10px;
+    letter-spacing: 2px;
+    margin-bottom: 7px;
+}
+
+.historia-progreso-barra {
+    width: 100%;
+    height: 3px;
+    background: rgba(224, 218, 207, .12);
+    overflow: hidden;
+    border-radius: 5px;
+}
+
+#historia-progreso-fill {
+    width: 20%;
+    height: 100%;
+    background: #e0b066;
+    transition: width .5s ease;
+}
+
+#historia-siguiente {
+    border: 0;
+    padding: 13px 22px;
+    border-radius: 25px;
+    background: #e0b066;
+    color: #111;
+    font-family: 'Montserrat', sans-serif;
+    font-size: 11px;
+    font-weight: 700;
+    letter-spacing: 1px;
+    cursor: pointer;
+    transition: transform .25s ease, box-shadow .25s ease, background .25s ease;
+}
+
+#historia-siguiente:hover {
+    transform: translateY(-2px);
+    background: #f0c979;
+    box-shadow: 0 8px 25px rgba(224, 176, 102, .35);
+}
+
+#btn-explorar-plaza {
+    position: fixed;
+    left: 50%;
+    bottom: 45px;
+    transform: translate(-50%, 30px);
+    z-index: 600;
+    padding: 16px 35px;
+    border: 1px solid rgba(224, 176, 102, .6);
+    border-radius: 30px;
+    background: rgba(13, 15, 18, .92);
+    color: #e0b066;
+    font-family: 'Montserrat', sans-serif;
+    font-size: 12px;
+    font-weight: 700;
+    letter-spacing: 2px;
+    cursor: pointer;
+    opacity: 0;
+    visibility: hidden;
+    transition: opacity .5s ease, transform .5s ease, background .3s ease;
+}
+
+#btn-explorar-plaza.visible {
+    opacity: 1;
+    visibility: visible;
+    transform: translate(-50%, 0);
+}
+
+#btn-explorar-plaza:hover {
+    background: #e0b066;
+    color: #111;
+    box-shadow: 0 10px 35px rgba(224, 176, 102, .35);
+}
+
+body.historia-activa .instrucciones-navegacion {
+    opacity: 0.15;
+}
+
+/* =========================================================
+   RESPONSIVE
+========================================================= */
+
+@media (max-width: 900px) {
+    #historia-overlay {
+        justify-content: center;
+        padding: 20px;
+    }
+
+    #historia-panel {
+        width: min(600px, 94vw);
+        max-height: 88vh;
+        top: 50% !important; 
+        left: 50% !important;
+        transform: translate(-50%, -50%) !important;
+    }
+
+    .historia-imagen-contenedor {
+        height: 190px;
+    }
+}
+
+@media (max-width: 600px) {
+    #historia-panel {
+        padding: 23px;
+    }
+
+    #historia-titulo {
+        font-size: 1.6rem;
+    }
+
+    #historia-texto {
+        font-size: 14px;
+        line-height: 1.65;
+    }
+
+    .historia-footer {
+        flex-direction: column;
+        align-items: stretch;
+    }
+
+    #historia-siguiente {
+        width: 100%;
+    }
+}

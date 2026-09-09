@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Monumento a Federico Escobar Zapata - Vista 3D</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Cinzel+Decorative:wght@700;900&family=Cinzel:wght@700;900&family=Montserrat:wght@400;700&display=swap" rel="stylesheet">    
+    <link rel="stylesheet" href="federico.css">
+</head>
+<body>
+
+    <div id="loader-container">
+        <div class="loader-content">
+            <div class="loader-brand">POTOSÍ - LLALLAGUA - SIGLO XX</div>
+            <div class="loader-text">Cargando Monumento...</div>
+            <div class="progress-bar-container">
+                <div id="progress-bar"></div>
+            </div>
+            <div id="progress-text">0%</div>
+        </div>
+    </div>
+
+    <div class="main-titulo-izquierdo">
+        <h1 class="texto-region">Potosí - Llallagua - Siglo XX</h1>
+        <h2 class="texto-monumento">Monumento <span>a Federico Escobar</span></h2>
+        <div class="foto-contexto-container">
+            <!-- Reemplaza 'ruta/a/tu/foto.jpg' con la ubicación real de tu imagen -->
+            <img src="imagenes/federico.jpg" alt="Fotografía histórica del monumento" class="foto-contexto">
+        </div>
+    </div>
+
+    <div id="info-sidebar">
+        <div class="sidebar-scrollable">
+            <section class="info-bloque">
+                <h2>Historia</h2>
+                <p>Nacido en Oruro el 26 de noviembre de 1923, fue un histórico y fundamental líder sindical minero de Bolivia. Trabajador del campamento Siglo XX en la mina Catavi, dedicó su vida a la defensa de los derechos de los trabajadores del subsuelo.</p>
+            </section>
+
+            <section class="info-bloque">
+                <h2>Significado</h2>
+                <p>Ocupó el cargo clave de Control Obrero en la Corporación Minera de Bolivia (COMIBOL) y fue un ferviente impulsor de la conciencia política, además de fundador del Partido Comunista Marxista Leninista. Su legado representa la lucha inquebrantable del proletariado minero boliviano.</p>
+            </section>
+
+            <section class="info-bloque fichatecnica">
+                <h2>Ficha Técnica</h2>
+                <p><strong>Material base:</strong> Metal esculpido / Bronce</p>
+                <p><strong>Lugar de Homenaje:</strong> Campamento Siglo XX, Catavi - Llallagua</p>
+            </section>
+        </div>
+
+        <button class="action-button-back" onclick="window.location.href='modelo.html'">Volver al Modelo 3D</button>
+    </div>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/108/three.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/three@0.108.0/examples/js/loaders/GLTFLoader.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/three@0.108.0/examples/js/controls/OrbitControls.js"></script>
+    
+    <script src="federico.js"></script>
+</body>
+</html>

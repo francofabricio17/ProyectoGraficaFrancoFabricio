@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Monumento César, Guillermo e Isaac - Vista 3D</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Cinzel+Decorative:wght@700;900&family=Cinzel:wght@700;900&family=Montserrat:wght@400;700&display=swap" rel="stylesheet">    
+    <link rel="stylesheet" href="cesar.css">
+</head>
+<body>
+
+    <div id="loader-container">
+        <div class="loader-content">
+            <div class="loader-brand">POTOSÍ - LLALLAGUA - SIGLO XX</div>
+            <div class="loader-text">Cargando Monumento...</div>
+            <div class="progress-bar-container">
+                <div id="progress-bar"></div>
+            </div>
+            <div id="progress-text">0%</div>
+        </div>
+    </div>
+
+    <div class="main-titulo-izquierdo">
+        <h1 class="texto-region">Potosí - Llallagua - Siglo XX</h1>
+        <h2 class="texto-monumento">Monumento <span>César, Guillermo</span></h2>
+        <h3 class="texto-monumento"><span>e Isaac</span></h3>
+        <!-- ▼ AÑADE ESTE BLOQUE ▼ -->
+        <div class="foto-contexto-container">
+            <!-- Reemplaza 'ruta/a/tu/foto.jpg' con la ubicación real de tu imagen -->
+            <img src="imagenes/cesar.jpg" alt="Fotografía histórica del monumento" class="foto-contexto">
+        </div>
+        <!-- ▲ FIN DEL BLOQUE ▲ -->
+    </div>
+
+    <div id="info-sidebar">
+        <div class="sidebar-scrollable">
+            <section class="info-bloque">
+                <h2>Historia</h2>
+                <p>Erigido en homenaje a tres figuras fundamentales del movimiento obrero minero de Llallagua y Siglo XX: César Lora, el legendario dirigente trotskista y líder sindical; Guillermo Lora, el destacado teórico e ideólogo revolucionario; e Isaac Camacho, valeroso dirigente minero.</p>
+            </section>
+
+            <section class="info-bloque">
+                <h2>Significado</h2>
+                <p>El pedestal unificado simboliza la unidad ideológica, la resistencia obrera y la lucha inclaudicable contra las dictaduras y la explotación. Es un recordatorio permanente del pensamiento revolucionario surgido en las entrañas de los campamentos mineros.</p>
+            </section>
+
+            <section class="info-bloque fichatecnica">
+                <h2>Ficha Técnica</h2>
+                <p><strong>Personajes homenajeados:</strong> César Lora, Guillermo Lora e Isaac Camacho</p>
+                <p><strong>Material base:</strong> Metal esculpido / Bronce y pedestal de piedra</p>
+                <p><strong>Ubicación:</strong> Plaza principal, Llallagua</p>
+            </section>
+        </div>
+
+        <button class="action-button-back" onclick="window.location.href='modelo.html'">Volver al Modelo 3D</button>
+    </div>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/108/three.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/three@0.108.0/examples/js/loaders/GLTFLoader.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/three@0.108.0/examples/js/controls/OrbitControls.js"></script>
+    
+    <script src="cesar.js"></script>
+</body>
+</html>

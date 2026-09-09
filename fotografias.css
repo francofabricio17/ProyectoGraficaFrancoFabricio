@@ -1,0 +1,255 @@
+/* RESET Y CONFIGURACIÓN BASE */
+*, *::before, *::after {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+body {
+    background-color: #1a1512;
+    color: #f6efe9;
+    font-family: 'Montserrat', sans-serif;
+    min-height: 100vh;
+    overflow: hidden;
+    display: flex;
+}
+
+/* ESCENARIO THREE.JS DE FONDO TOTAL */
+#webgl-container {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    z-index: -3; /* Se mantiene en el fondo para evitar bloqueos por pointer-events */
+}
+
+/* FONDO EVOCATIVO CON DEGRADADO */
+.fondo-galeria {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100vh;
+    background: radial-gradient(circle at 50% 50%, rgba(60, 40, 28, 0.6) 0%, #1a1512 80%),
+                url('imagenes/fondo.jpg') no-repeat center center;
+    background-size: cover;
+    filter: brightness(1.8) contrast(1.2);
+    z-index: -2;
+}
+
+.luces-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100vh;
+    background-image: radial-gradient(circle at 20% 80%, rgba(217, 136, 65, 0.15) 0%, transparent 40%),
+                      radial-gradient(circle at 80% 90%, rgba(160, 82, 45, 0.1) 0%, transparent 30%);
+    z-index: -1;
+    pointer-events: none;
+}
+
+/* MENÚ LATERAL IZQUIERDO */
+.sidebar-menu {
+    position: absolute;
+    left: 40px;
+    top: 50%;
+    transform: translateY(-50%);
+    z-index: 10;
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+    pointer-events: auto;
+}
+
+.sidebar-menu a {
+    display: inline-block;
+    background: rgba(26, 21, 18, 0.75);
+    color: #d1cbc4;
+    font-family: 'Montserrat', sans-serif;
+    font-weight: 700;
+    text-transform: uppercase;
+    font-size: 0.85rem;
+    letter-spacing: 2px;
+    padding: 15px 35px;
+    border-radius: 35px; 
+    border: 1px solid rgba(246, 239, 233, 0.1);
+    cursor: pointer;
+    transition: all 0.3s ease;
+    text-decoration: none;
+    width: 200px;
+    text-align: center;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.5);
+}
+
+/* BOTONES LATERALES: COBRE/MINERO AL ESTAR ACTIVOS O EN HOVER */
+.sidebar-menu a:hover, .sidebar-menu a.active {
+    background: linear-gradient(135deg, #d98841 0%, #6e3615 100%); 
+    color: #ffffff;
+    border-color: transparent;
+    transform: translateY(-3px);
+    box-shadow: 0 10px 25px rgba(217, 136, 65, 0.4);
+    filter: brightness(1.1);
+}
+
+/* TÍTULO SUPERIOR ANIMADO */
+.header-title {
+    position: absolute;
+    top: 40px;
+    left: 50%;
+    transform: translateX(-50%);
+    font-family: 'Cinzel Decorative', serif;
+    font-size: 3.5rem;
+    font-weight: 900;
+    letter-spacing: 12px;
+    text-transform: uppercase;
+    background: linear-gradient(135deg, #ffffff 10%, #d98841 50%, #6e3615 90%);
+    background-size: 200% auto;
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    text-shadow: 0 15px 30px rgba(0,0,0,0.7);
+    z-index: 5;
+    animation: brilloTexto 4s linear infinite;
+}
+
+@keyframes brilloTexto {
+    0% { background-position: 0% 50%; }
+    50% { background-position: 100% 50%; }
+    100% { background-position: 0% 50%; }
+}
+
+/* CONTENEDOR PRINCIPAL DEL ESCENARIO 3D */
+.escenario-3d {
+    flex: 1;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    perspective: 1400px;
+    height: 100vh;
+    margin-left: 110px;
+}
+
+/* ESTRUCTURA DEL CARRUSEL GIRATORIO */
+.carrusel-3d {
+    position: relative;
+    width: 400px;
+    height: 260px; 
+    transform-style: preserve-3d;
+    transition: transform 0.8s cubic-bezier(0.2, 0.8, 0.3, 1);
+}
+
+/* ESTILO DE LAS TARJETAS (Bordes neutrales / cristal suave) */
+.tarjeta-foto {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    left: 0;
+    top: 0;
+    background-color: rgba(26, 21, 18, 0.85);
+    border: 1px solid rgba(246, 239, 233, 0.15); /* Borde neutral y sutil */
+    backdrop-filter: blur(4px);
+    border-radius: 12px;
+    overflow: hidden;
+    box-shadow: 0 15px 35px rgba(0, 0, 0, 0.7), 
+                0 0 15px rgba(0, 0, 0, 0.2);
+    backface-visibility: visible;
+    pointer-events: auto;
+    cursor: pointer;
+    transition: transform 0.5s ease, filter 0.5s ease, border-color 0.4s, box-shadow 0.4s;
+}
+
+.tarjeta-foto img {
+    width: 100%;
+    height: 75%; 
+    object-fit: cover;
+    border-bottom: 2px solid rgba(246, 239, 233, 0.15); /* Borde neutral de la imagen */
+    transition: transform 0.5s cubic-bezier(0.25, 1, 0.5, 1);
+}
+
+/* Texto inferior de la foto */
+.info-foto {
+    width: 100%;
+    height: 25%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 4px 12px;
+    background: linear-gradient(to top, #1a1512, rgba(26, 21, 18, 0.95));
+    text-align: center;
+}
+
+/* TEXTOS INTERIORES */
+.info-foto p {
+    font-family: 'Orbitron', sans-serif;
+    font-size: 0.75rem;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 1.5px;
+    color: rgba(246, 239, 233, 0.9);
+    text-shadow: 0 0 6px rgba(217, 136, 65, 0.4); /* Resplandor color cobre en el texto */
+    transition: all 0.3s ease;
+    line-height: 1.2;
+}
+
+/* EFECTOS HOVER (Borde se mantiene neutral, solo aumenta sombra) */
+.tarjeta-foto:hover {
+    border-color: rgba(246, 239, 233, 0.3);
+    box-shadow: 0 20px 40px rgba(0, 0, 0, 0.8), 
+                0 0 15px rgba(217, 136, 65, 0.2);
+}
+
+.tarjeta-foto:hover .info-foto p {
+    color: #ffffff;
+    text-shadow: 0 0 10px rgba(217, 136, 65, 0.9), 0 0 10px rgba(246, 239, 233, 0.4);
+    letter-spacing: 2px;
+}
+
+.tarjeta-foto:hover img {
+    transform: scale(1.05);
+    border-color: rgba(246, 239, 233, 0.3);
+}
+
+/* CONTROLES DE NAVEGACIÓN INFERIORES */
+.controles-galeria {
+    position: absolute;
+    bottom: 50px;
+    left: 50%;
+    transform: translateX(-50%);
+    display: flex;
+    gap: 20px;
+    z-index: 10;
+    pointer-events: auto;
+}
+
+.btn-control {
+    background: rgba(26, 21, 18, 0.8);
+    border: 1px solid rgba(246, 239, 233, 0.2);
+    color: #f6efe9;
+    width: 55px;
+    height: 55px;
+    border-radius: 50%;
+    font-size: 1.3rem;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    box-shadow: 0 4px 15px rgba(0,0,0,0.5);
+}
+
+/* BOTONES DE CONTROL: TONO COBRE/MINERO EN HOVER */
+.btn-control:hover {
+    background: #d98841;
+    border-color: #d98841;
+    color: #ffffff;
+    box-shadow: 0 0 20px rgba(217, 136, 65, 0.6);
+    transform: scale(1.1);
+}
+
+/* RESPONSIVE */
+@media (max-width: 900px) {
+    .sidebar-menu { left: 20px; gap: 10px; }
+    .sidebar-menu a { width: 160px; padding: 10px 20px; font-size: 0.75rem; }
+    .header-title { font-size: 2.2rem; letter-spacing: 6px; top: 20px; }
+    .escenario-3d { margin-left: 0; margin-top: 60px; }
+}

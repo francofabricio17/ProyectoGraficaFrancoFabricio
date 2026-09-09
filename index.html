@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Plaza Minero</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Cinzel+Decorative:wght@700;900&family=Cinzel:wght@700;900&family=Montserrat:wght@400;700&display=swap" rel="stylesheet">    
+    <link rel="stylesheet" href="modelo.css">
+</head>
+<body>
+    <div id="loader-container">
+        <div class="loader-content">
+            <div class="loader-brand">POTOSÍ - LLALLAGUA - SIGLO XX</div>
+            <div class="loader-text">Cargando Modelo 3D...</div>
+            <div class="progress-bar-container">
+                <div id="progress-bar"></div>
+            </div>
+            <div id="progress-text">0%</div>
+        </div>
+    </div>
+
+    <div id="ui-container">
+        <h1 class="titulo-plaza">
+            Potosí - Llallagua - Siglo "XX"
+            <span>Plaza del Minero</span>
+        </h1>
+        
+        <!-- Contenedor de botones -->
+        <div class="botones-container">
+            <button class="btn-fotografias" onclick="window.location.href='fotografias.html'">FOTOGRAFÍAS</button>
+            <button class="action-button" onclick="window.location.href='index.html'">Volver a Inicio</button>
+        </div>
+    </div>
+
+    <div id="etiquetas-container"></div>
+
+    <!-- =========================================
+         HISTORIA INTERACTIVA
+    ========================================= -->
+    <div id="historia-overlay">
+        <div id="historia-panel">
+            <div class="historia-indicador">
+                <span id="historia-numero">01</span>
+                <span class="historia-linea"></span>
+                <span>PLAZA DEL MINERO</span>
+            </div>
+
+            <h2 id="historia-titulo">
+                Plaza del Minero
+            </h2>
+
+            <div class="historia-imagen-contenedor">
+                <img id="historia-imagen" src="" alt="Historia de la Plaza del Minero">
+            </div>
+
+            <p id="historia-texto">
+                Cargando historia...
+            </p>
+
+            <div class="historia-footer">
+                <div class="historia-progreso">
+                    <span id="historia-progreso-texto">1 / 5</span>
+                    <div class="historia-progreso-barra">
+                        <div id="historia-progreso-fill"></div>
+                    </div>
+                </div>
+
+                <button id="historia-siguiente">
+                    CONTINUAR →
+                </button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Botón que aparece cuando termina la historia -->
+    <button id="btn-explorar-plaza">
+        EXPLORAR LA PLAZA
+    </button>
+
+    <div class="instrucciones-navegacion">
+        <h3>Controles 3D</h3>
+        <ul>
+            <li><strong>Girar:</strong> Clic izquierdo + Arrastrar</li>
+            <li><strong>Mover:</strong> Clic derecho + Arrastrar</li>
+            <li><strong>Zoom:</strong> Rueda del ratón</li>
+        </ul>
+    </div>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/108/three.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/three@0.108.0/examples/js/loaders/GLTFLoader.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/three@0.108.0/examples/js/controls/OrbitControls.js"></script>
+    <script src="modelo.js"></script>
+    <script src="historia.js"></script>
+</body>
+</html>
