@@ -35,28 +35,21 @@ function init() {
         }
     };
 
-    manager.onLoad = function () {
-        console.log("Carga al 100%. Todos los modelos y texturas están listos.");
-        var loaderContainer = document.getElementById('loader-container');
-        if (loaderContainer) {
-            loaderContainer.classList.add('loaded');
-        }
-        
-        // Verificamos si la historia ya fue vista usando localStorage
-        var historiaVista = localStorage.getItem('historiaVisto_PlazaMinero');
-        
-        if (historiaVista === 'true') {
-            // Si ya la vio, saltamos la historia de inmediato ocultando el overlay
-            console.log("Historia ya vista anteriormente. Omitiendo presentación.");
-            var introContainer = document.getElementById('historia-overlay'); // <-- ID corregido para que coincida con el CSS
-            if (introContainer) introContainer.style.display = 'none';
-        } else {
-            // Si es su primera vez, disparamos la historia
-            if (typeof window.iniciarHistoriaApp === 'function') {
-                window.iniciarHistoriaApp();
-            }
-        }
-    };
+   manager.onLoad = function () {
+    console.log("Carga al 100%. Todos los modelos y texturas están listos.");
+    var loaderContainer = document.getElementById('loader-container');
+    if (loaderContainer) {
+        loaderContainer.classList.add('loaded');
+    }
+    
+    // Llamamos directamente a la app de la historia. 
+    // historia.js se encargará de verificar el localStorage automáticamente.
+    if (typeof window.iniciarHistoriaApp === 'function') {
+        window.iniciarHistoriaApp();
+    } else {
+        console.error("Error: historia.js no se cargó correctamente.");
+    }
+};
 
     // ====================================================
 
