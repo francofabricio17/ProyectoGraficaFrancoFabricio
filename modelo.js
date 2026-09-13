@@ -46,9 +46,9 @@ function init() {
         var historiaVista = localStorage.getItem('historiaVisto_PlazaMinero');
         
         if (historiaVista === 'true') {
-            // Si ya la vio, saltamos la historia de inmediato
+            // Si ya la vio, saltamos la historia de inmediato ocultando el overlay
             console.log("Historia ya vista anteriormente. Omitiendo presentación.");
-            var introContainer = document.getElementById('historia-container'); // Ajusta según tu HTML de historia si es necesario
+            var introContainer = document.getElementById('historia-overlay'); // <-- ID corregido para que coincida con el CSS
             if (introContainer) introContainer.style.display = 'none';
         } else {
             // Si es su primera vez, disparamos la historia
