@@ -1,5 +1,5 @@
 /* ============================================================
-   HISTORIA INTERACTIVA - VERSIÓN CON LOCALSTORAGE
+   HISTORIA INTERACTIVA - VERSIÓN SIN LOCALSTORAGE (SIEMPRE INICIA)
    PLAZA DEL MINERO - LLALLAGUA - SIGLO XX
 ============================================================ */
 
@@ -61,33 +61,15 @@
     window.iniciarHistoriaApp = function() {
         crearInterfaz();
 
-        // 1. Revisamos si ya vimos la historia antes (localStorage)
-        if (localStorage.getItem('historiaVisto_PlazaMinero') === 'true') {
-            
-            // Si ya la vio, le damos la cámara libre inmediatamente sin mostrar nada
-            historiaTerminada = true;
-            if(historiaOverlay) historiaOverlay.classList.remove("activa");
-            document.body.classList.remove("historia-activa");
-
-            if (controles) {
-                controles.enabled = true;
-                controles.enableRotate = true;
-                controles.enableZoom = true;
-                controles.enablePan = true;
-                controles.update();
-            }
-            
-        } else {
-            // 2. Si es su primera vez, mostramos la historia normal
-            if (historiaIniciada) return;
-            historiaIniciada = true;
-            document.body.classList.add("historia-activa");
-            
-            if (controles) controles.enabled = false;
-            if (historiaOverlay) historiaOverlay.classList.add("activa");
-            
-            mostrarPaso(0);
-        }
+        // Iniciamos la historia directamente siempre
+        if (historiaIniciada) return;
+        historiaIniciada = true;
+        document.body.classList.add("historia-activa");
+        
+        if (controles) controles.enabled = false;
+        if (historiaOverlay) historiaOverlay.classList.add("activa");
+        
+        mostrarPaso(0);
     };
     // ====================================================
 
@@ -177,11 +159,6 @@
     }
 
     function terminarHistoria() {
-        
-        // ====================================================
-        // GUARDAMOS EN LOCALSTORAGE QUE YA VIO LA HISTORIA
-        // ====================================================
-        localStorage.setItem('historiaVisto_PlazaMinero', 'true');
         
         historiaTerminada = true;
         if (historiaOverlay) historiaOverlay.classList.remove("activa");

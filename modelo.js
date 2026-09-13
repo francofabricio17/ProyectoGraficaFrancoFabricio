@@ -43,7 +43,6 @@ function init() {
     }
     
     // Llamamos directamente a la app de la historia. 
-    // historia.js se encargará de verificar el localStorage automáticamente.
     if (typeof window.iniciarHistoriaApp === 'function') {
         window.iniciarHistoriaApp();
     } else {
@@ -134,8 +133,7 @@ function init() {
             div.className = 'etiqueta-3d';
             div.innerText = marcador.texto;
             div.onclick = function() {
-                // Guardamos la marca de que ya vio la plaza/historia antes de navegar al monumento
-                localStorage.setItem('historiaVisto_PlazaMinero', 'true');
+                // Navegamos directamente al monumento
                 window.location.href = marcador.enlace;
             };
             etiquetasContainer.appendChild(div);
@@ -170,7 +168,7 @@ function init() {
         var center = box.getCenter(new THREE.Vector3());
         controles.target.copy(center);
         
-        // Si ya vio la historia anteriormente, podemos posicionar la cámara de forma directa o fluida
+        // Posicionamiento de cámara por defecto
         camera.position.set(center.x + 2800, center.y + 470, center.z - 1800);
         camera.lookAt(center);
         controles.update();
