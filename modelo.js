@@ -64,17 +64,12 @@ function init() {
     // ====================================================
     // OPTIMIZACIÓN 1: PIXEL RATIO DINÁMICO
     // ====================================================
-    // Reemplaza esto:
-// renderer = new THREE.WebGLRenderer({ antialias: true });
-
-// Por esto:
-renderer = new THREE.WebGLRenderer({ 
-    antialias: false, 
-    powerPreference: "high-performance",
-    failIfMajorPerformanceCaveat: false
-});
+    renderer = new THREE.WebGLRenderer({ 
+        antialias: false, 
+        powerPreference: "high-performance",
+        failIfMajorPerformanceCaveat: false
+    });
     renderer.setSize(window.innerWidth, window.innerHeight);
-    // Limita el ratio en celulares para ahorrar muchísima batería y recursos
     renderer.setPixelRatio(Math.min(window.devicePixelRatio, window.innerWidth < 768 ? 1 : 1.5));
     renderer.toneMapping = THREE.ACESFilmicToneMapping;
     renderer.toneMappingExposure = 1.0; 
@@ -106,7 +101,6 @@ renderer = new THREE.WebGLRenderer({
     var directionalLight = new THREE.DirectionalLight(0xffffff, 1.0);
     directionalLight.position.set(30, 60, 30);
     directionalLight.castShadow = true;
-    // Mapas de sombra reducidos a 256 para liberar RAM de video
     directionalLight.shadow.mapSize.width = 256; 
     directionalLight.shadow.mapSize.height = 256;
     directionalLight.shadow.camera.near = 0.5;
@@ -147,7 +141,6 @@ renderer = new THREE.WebGLRenderer({
         });
     }
     
-    // Función segura para cargar modelos
     function cargarModeloSeguro(url, callbackExito) {
         cargar.load(url, function(gltf) {
             callbackExito(gltf.scene);
@@ -162,11 +155,18 @@ renderer = new THREE.WebGLRenderer({
     // ====================================================
     function crearInstancias(gltfScene, instanciasData, scene, castShadow = true) {
         var dummy = new THREE.Object3D();
+        
+        // CORRECCIÓN 1: Forzar actualización de matrices originales
+        gltfScene.updateMatrixWorld(true);
+        
         gltfScene.traverse(function(child) {
             if (child.isMesh) {
                 var instancedMesh = new THREE.InstancedMesh(child.geometry, child.material, instanciasData.length);
                 instancedMesh.castShadow = castShadow;
                 instancedMesh.receiveShadow = true;
+                
+                // CORRECCIÓN 2: Evitar que desaparezcan al mover la cámara
+                instancedMesh.frustumCulled = false;
                 
                 instanciasData.forEach(function(data, i) {
                     dummy.position.set(data.pos[0], data.pos[1], data.pos[2]);
@@ -183,7 +183,9 @@ renderer = new THREE.WebGLRenderer({
                     
                     dummy.updateMatrix();
                     var finalMatrix = new THREE.Matrix4();
-                    finalMatrix.multiplyMatrices(dummy.matrix, child.matrix);
+                    
+                    // CORRECCIÓN 3: Combinar con matrixWorld del modelo original
+                    finalMatrix.multiplyMatrices(dummy.matrix, child.matrixWorld);
                     
                     instancedMesh.setMatrixAt(i, finalMatrix);
                 });
